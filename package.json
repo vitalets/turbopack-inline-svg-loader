@@ -1,0 +1,47 @@
+{
+  "name": "turbopack-inline-svg-loader",
+  "description": "A Turbopack loader to import SVG as optimized data URI with dimensions",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalets/turbopack-inline-svg-loader.git"
+  },
+  "main": "./src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "prettier": "prettier --check --ignore-unknown .",
+    "release": "release-it"
+  },
+  "dependencies": {
+    "image-size": "^2.0.2",
+    "mini-svg-data-uri": "^1.4.4",
+    "svgo": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.0",
+    "prettier": "^3.6.2",
+    "release-it": "^19.0.5"
+  },
+  "keywords": [
+    "turbopack",
+    "inline",
+    "svg",
+    "loader",
+    "dimensions"
+  ],
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "semi": true,
+    "trailingComma": "all",
+    "bracketSpacing": true
+  },
+  "funding": "https://github.com/sponsors/vitalets",
+  "license": "MIT"
+}
