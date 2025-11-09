@@ -50,12 +50,12 @@ Add the loader configuration to the `next.config.js`:
 const nextConfig = {
   turbopack: {
     rules: {
-      "*.svg": {
-        loaders: ["turbopack-inline-svg-loader"],
+      '*.svg': {
+        loaders: ['turbopack-inline-svg-loader'],
         condition: {
           content: /^[\s\S]{0,2000}$/, // <-- Inline SVGs smaller than ~2Kb
         },
-        as: "*.js",
+        as: '*.js',
       },
     },
   },
@@ -72,7 +72,7 @@ import Image from 'next/image';
 import myIcon from './icon.svg';
 
 export default function Page() {
-  return <Image src={myIcon} />
+  return <Image src={myIcon} alt="my icon" />;
 }
 ```
 
@@ -82,10 +82,10 @@ You can change image size via CSS `style` or `className`:
 
 ```tsx
 // Set size via style
-return <Image src={myIcon} style={{ width: 64, height: 64 }}/>
+return <Image src={myIcon} style={{ width: 64, height: 64 }} alt="my icon" />;
 
-// Set size with Tailwind 
-return <Image src={myIcon} className="size-64"/>
+// Set size with Tailwind
+return <Image src={myIcon} className="size-64" alt="my icon" />;
 ```
 
 ### How to change color?
@@ -106,32 +106,27 @@ return (
 ```
 
 To make it render via the `<img>` tag, you can create a universal `Icon` component:
+
 ```tsx
 import Icon from './Icon';
 import myIcon from './icon.svg';
 
-return <Icon src={myIcon} style={{ color: 'green', width: 64, height: 64 }}/>
+return <Icon src={myIcon} style={{ color: 'green', width: 64, height: 64 }} />;
 ```
 
 <details><summary>Icon.tsx</summary>
 
 ```tsx
-import { type ComponentProps } from "react";
-import { type StaticImageData } from "next/image";
+import { type ComponentProps } from 'react';
+import { type StaticImageData } from 'next/image';
 
-type IconProps = Omit<ComponentProps<"img">, "src"> & {
+type IconProps = Omit<ComponentProps<'img'>, 'src'> & {
   src: StaticImageData;
 };
 
 const EMPTY_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
 
-export default function Icon({
-  src,
-  width,
-  height,
-  style,
-  ...props
-}: IconProps) {
+export default function Icon({ src, width, height, style, ...props }: IconProps) {
   return (
     <img
       width={width ?? src.width}
@@ -147,6 +142,7 @@ export default function Icon({
   );
 }
 ```
+
 </details>
 
 ## Feedback
