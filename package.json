@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "prettier": "prettier --check --ignore-unknown .",
-    "release": "release-it"
+    "release:patch": "npm version patch && npm publish && git push --follow-tags"
   },
   "dependencies": {
     "image-size": "^2.0.2",
