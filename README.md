@@ -94,6 +94,9 @@ return <Image src={myIcon} className="size-64" alt="my icon" />;
 For monochrome icons you can change the color using [CSS mask technique](https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images). To achieve it, create a helper component `Icon.tsx` that renders SVG as a mask:
 
 ```tsx
+/**
+ * A component for rendering monochrome SVG icons using the current text color.
+ */
 import { type ComponentProps } from 'react';
 import { type StaticImageData } from 'next/image';
 

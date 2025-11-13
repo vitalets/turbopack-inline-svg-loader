@@ -1,3 +1,12 @@
+/**
+ * A component to render monochrome SVG icons with current text color.
+ *
+ * @example
+ * import Icon from './Icon';
+ * import myIcon from './icon.svg';
+ *
+ * <Icon src={myIcon} style={{ color: 'green' }} />
+ */
 import { type ComponentProps } from 'react';
 import { type StaticImageData } from 'next/image';
 
