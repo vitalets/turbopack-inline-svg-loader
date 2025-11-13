@@ -70,6 +70,9 @@ export default function Page() {
 }
 ```
 
+> [!TIP]
+> For local images, always prefer static import instead of direct path to the `public` folder. It ensures the image file exists and properly cached by the content.
+
 ### How to change size?
 
 You can change image size via CSS `style` or `className`:
@@ -128,7 +131,7 @@ return <Icon src={myIcon} className="text-green-600" />;
 
 ## TypeScript
 
-By default, Next.js imports `*.svg` assets [as `any` type](https://github.com/vercel/next.js/blob/v16.0.3/packages/next/image-types/global.d.ts#L16) to avoid conflicts with SVGR. To make `*.svg` imported like other images `{ src, widht, height }` you can create the following `svg.d.ts` file in the project root:
+By default, Next.js imports `*.svg` assets [as `any` type](https://github.com/vercel/next.js/blob/v16.0.3/packages/next/image-types/global.d.ts#L16) to avoid conflicts with SVGR. To make `*.svg` imported like other images `{ src, width, height }`, create the following `svg.d.ts` file in the project root:
 
 ```ts
 declare module '*.svg' {
@@ -147,9 +150,15 @@ and add it to the `tsconfig.json` before `next-env.d.ts`:
 ],
 ```
 
+Now your SVG imports will be resolved as `{ src, width, height }`.
+
 ## References
 
+Here are some great resources to dive deep into the rabbit hole of SVGs in modern frontend development:
+
+- [A guide to using SVGs in React](https://blog.logrocket.com/guide-svgs-react)
 - [Breaking Up with SVG-in-JS](https://kurtextrem.de/posts/svg-in-js)
+- [Introducing @svg-use](https://fotis.xyz/posts/introducing-svg-use/)
 
 ## Feedback
 
