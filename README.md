@@ -41,7 +41,8 @@ yarn add -D turbopack-inline-svg-loader
 
 ## Configuration
 
-Add the loader configuration to the `next.config.js`:
+Add the loader configuration to the `next.config.js`.
+Since **Next.js v16** you can provide conditions to apply a loader:
 
 ```ts
 const nextConfig = {
@@ -50,7 +51,7 @@ const nextConfig = {
       '*.svg': {
         loaders: ['turbopack-inline-svg-loader'],
         condition: {
-          content: /^[\s\S]{0,2000}$/, // <-- Inline SVGs smaller than ~2Kb, since Next.js v16
+          content: /^[\s\S]{0,2000}$/, // <-- Inline SVGs smaller than ~2Kb (since Next.js v16)
         },
         as: '*.js',
       },
