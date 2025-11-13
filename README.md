@@ -1,5 +1,8 @@
 # turbopack-inline-svg-loader
 
+[![npm version](https://img.shields.io/npm/v/turbopack-inline-svg-loader)](https://www.npmjs.com/package/turbopack-inline-svg-loader)
+[![license](https://img.shields.io/github/license/vitalets/turbopack-inline-svg-loader)](https://github.com/vitalets/turbopack-inline-svg-loader/blob/main/license)
+
 A [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) loader to import SVG as optimized data URI with dimensions. The imported object has the same shape as external assets `{ src, width, height }` and can be passed directly to the Next.js `<Image />` component.
 
 ## Example
@@ -10,7 +13,7 @@ import myIcon from './icon.svg';
 return <Image src={myIcon} alt="my icon" />;
 
 // Renders:
-// <img width="..." height="..." src="data:image/svg+xml,<svg ...></svg>" />
+// <img width="..." height="..." src="data:image/svg+xml,..." />
 ```
 
 ## Why inline SVG?
@@ -19,7 +22,7 @@ Inlining small SVGs is beneficial because it eliminates additional HTTP requests
 
 ## Why not SVGR?
 
-Check [this article](https://kurtextrem.de/posts/svg-in-js).
+Check out [this article](https://kurtextrem.de/posts/svg-in-js).
 
 ## Installation
 
