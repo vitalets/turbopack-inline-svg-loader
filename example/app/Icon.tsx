@@ -12,13 +12,13 @@ export default function Icon({ src, width, height, style, ...props }: IconProps)
     <img
       width={width ?? src.width}
       height={height ?? src.height}
-      {...props}
       src={EMPTY_SVG}
       style={{
         ...style,
         backgroundColor: `currentcolor`,
         mask: `url("${src.src}") no-repeat center / contain`,
       }}
+      {...props}
     />
   );
 }
