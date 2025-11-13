@@ -1,7 +1,7 @@
 {
   "name": "turbopack-inline-svg-loader",
   "description": "A Turbopack loader to import SVG as optimized data URI with dimensions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "commonjs",
   "repository": {
     "type": "git",
