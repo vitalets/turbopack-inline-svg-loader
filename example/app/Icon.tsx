@@ -1,5 +1,5 @@
 /**
- * A component to render monochrome SVG icons with current text color.
+ * A component for rendering monochrome SVG icons using the current text color.
  *
  * @example
  * import Icon from './Icon';
