@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/turbopack-inline-svg-loader)](https://www.npmjs.com/package/turbopack-inline-svg-loader)
 [![license](https://img.shields.io/github/license/vitalets/turbopack-inline-svg-loader)](https://github.com/vitalets/turbopack-inline-svg-loader/blob/main/license)
 
-A [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) loader to import SVG as optimized data URI with dimensions. The imported object has the same shape as external assets `{ src, width, height }` and can be passed directly to the Next.js `<Image />` component.
+A [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) loader for importing SVG as optimized data URI with dimensions. The imported object has the same shape as external assets `{ src, width, height }` and can be passed directly to the Next.js `<Image />` component.
 
 ## Example
 
