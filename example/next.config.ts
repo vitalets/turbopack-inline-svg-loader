@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       '*.svg': {
         loaders: ['..'], // Replace with ['turbopack-inline-svg-loader'] in real projects
         condition: {
-          content: /^[\s\S]{0,2000}$/, // <-- Inline SVGs smaller than ~2Kb
+          content: /^[\s\S]{0,4000}$/, // <-- Inline SVGs smaller than ~4Kb
         },
         as: '*.js',
       },
