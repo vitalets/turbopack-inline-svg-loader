@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/turbopack-inline-svg-loader)](https://www.npmjs.com/package/turbopack-inline-svg-loader)
 [![license](https://img.shields.io/github/license/vitalets/turbopack-inline-svg-loader)](https://github.com/vitalets/turbopack-inline-svg-loader/blob/main/license)
 
-A [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) loader for importing SVG as optimized data URI with dimensions. The imported object has the same shape as external assets `{ src, width, height }` and can be passed directly to the Next.js `<Image />` component.
+A [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) loader for importing SVGs as optimized data URIs with dimensions. The imported object has the same shape as external image (`{ src, width, height }`) and can be passed directly to the Next.js `<Image />` component.
 
 ## Example
 
@@ -12,13 +12,19 @@ import myIcon from './icon.svg';
 
 return <Image src={myIcon} alt="my icon" />;
 
-// Renders:
-// <img width="..." height="..." src="data:image/svg+xml,..." />
+/*
+myIcon is an object like:
+{
+  src: 'data:image/svg+xml,...',
+  width: 32,
+  height: 32,
+}
+*/
 ```
 
 ## Why inline SVG?
 
-Inlining small SVGs is beneficial because it eliminates additional HTTP requests, resulting in faster page load and instant rendering. The slight increase in JavaScript bundle is usually outweighed by the overall performance gains.
+Inlining small SVGs is beneficial because it eliminates additional HTTP requests, resulting in faster page loads and instant rendering. The slight increase in JavaScript bundle size is usually outweighed by the overall performance gains.
 
 ## Why not SVGR?
 
@@ -41,8 +47,8 @@ yarn add -D turbopack-inline-svg-loader
 
 ## Configuration
 
-Add the loader configuration to the `next.config.js`.
-Since **Next.js v16** you can provide conditions to apply a loader:
+Add the loader configuration to `next.config.js`.
+Since **Next.js v16**, you can [conditionally](https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#advanced-webpack-loader-conditions) apply a loader only to SVGs smaller than a given size:
 
 ```ts
 const nextConfig = {
@@ -63,7 +69,7 @@ const nextConfig = {
 
 ## Usage
 
-Statically import SVG file and pass it to the `<Image/>` component:
+Statically import an SVG file and pass it to the `<Image/>` component:
 
 ```tsx
 import Image from 'next/image';
@@ -74,12 +80,9 @@ export default function Page() {
 }
 ```
 
-> [!TIP]
-> For local images, always prefer static import instead of direct path to the `public` folder. It ensures the image file exists and properly cached by the content.
-
 ### How to change size?
 
-You can change image size via CSS `style` or `className`:
+You can change the image size via the CSS `style` prop or `className`:
 
 ```tsx
 // Set size via style
@@ -91,7 +94,7 @@ return <Image src={myIcon} className="size-64" alt="my icon" />;
 
 ### How to change color?
 
-For monochrome icons you can change the color using [CSS mask technique](https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images). To achieve it, create a helper component `Icon.tsx` that renders SVG as a mask:
+For monochrome icons, you can change the color using the [CSS mask technique](https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images). To achieve this, create a helper component `Icon.tsx` that renders the SVG as a mask:
 
 ```tsx
 /**
@@ -138,7 +141,7 @@ return <Icon src={myIcon} className="text-green-600" />;
 
 ## TypeScript
 
-By default, Next.js imports `*.svg` assets [as `any` type](https://github.com/vercel/next.js/blob/v16.0.3/packages/next/image-types/global.d.ts#L16) to avoid conflicts with SVGR. To make `*.svg` imported like other images `{ src, width, height }`, create the following `svg.d.ts` file in the project root:
+By default, Next.js imports `*.svg` assets [as the `any` type](https://github.com/vercel/next.js/blob/v16.0.3/packages/next/image-types/global.d.ts#L16) to avoid conflicts with SVGR. To make `*.svg` imports behave like other images (`{ src, width, height }`), create the following `svg.d.ts` file in the project root:
 
 ```ts
 declare module '*.svg' {
@@ -147,11 +150,11 @@ declare module '*.svg' {
 }
 ```
 
-and add it to the `tsconfig.json` before `next-env.d.ts`:
+and add it to `tsconfig.json` before `next-env.d.ts`:
 
 ```diff
 "include": [
-+  "svg.d.ts",
++ "svg.d.ts",
   "next-env.d.ts",
   ...
 ],
