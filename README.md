@@ -164,7 +164,9 @@ Now your SVG imports will be resolved as `{ src, width, height }`.
 
 ## References
 
-Here are some great resources to dive deep into the rabbit hole of SVGs in modern frontend development:
+A short background article [How I arrived at this package](https://dev.to/vitalets/turbopack-a-better-way-to-inline-svg-in-nextjs-16-36em).
+
+Some other resources to dive deep into the rabbit hole of SVGs:
 
 - [A guide to using SVGs in React](https://blog.logrocket.com/guide-svgs-react)
 - [Breaking Up with SVG-in-JS](https://kurtextrem.de/posts/svg-in-js)
