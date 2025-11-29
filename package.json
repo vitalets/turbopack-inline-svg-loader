@@ -14,8 +14,7 @@
   ],
   "scripts": {
     "prettier": "prettier --check --ignore-unknown --ignore-path=example/.gitignore .",
-    "prettier:w": "prettier --write --ignore-unknown --ignore-path=example/.gitignore .",
-    "release:patch": "npm version patch && npm publish && git push --follow-tags"
+    "prettier:w": "prettier --write --ignore-unknown --ignore-path=example/.gitignore ."
   },
   "dependencies": {
     "image-size": "^2.0.2",
@@ -24,7 +23,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.15.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "release-it": "^19.0.6"
   },
   "keywords": [
     "turbopack",
@@ -33,6 +33,18 @@
     "loader",
     "dimensions"
   ],
+  "releat-it": {
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "skipChecks": true
+    },
+    "git": {
+      "commitArgs": "--no-verify",
+      "pushArgs": "--no-verify"
+    }
+  },
   "prettier": {
     "tabWidth": 2,
     "useTabs": false,
