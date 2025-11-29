@@ -33,7 +33,7 @@
     "loader",
     "dimensions"
   ],
-  "releat-it": {
+  "release-it": {
     "github": {
       "release": true
     },
