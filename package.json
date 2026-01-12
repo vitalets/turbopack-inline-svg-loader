@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "prettier": "prettier --check --ignore-unknown --ignore-path=example/.gitignore .",
-    "prettier:w": "prettier --write --ignore-unknown --ignore-path=example/.gitignore ."
+    "prettier:w": "prettier --write --ignore-unknown --ignore-path=example/.gitignore .",
+    "deps": "npx npm-check-updates -i --format group,dep,repo --cooldown 7"
   },
   "dependencies": {
     "image-size": "^2.0.2",
@@ -23,7 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.15.0",
-    "prettier": "^3.7.2",
+    "prettier": "^3.7.4",
     "release-it": "^19.0.6"
   },
   "keywords": [
