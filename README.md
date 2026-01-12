@@ -94,37 +94,69 @@ return <Image src={myIcon} className="size-64" alt="my icon" />;
 
 ### How to change color?
 
-For monochrome icons, you can change the color using the [CSS mask technique](https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images). To achieve this, create a helper component `Icon.tsx` that renders the SVG as a mask:
+For monochrome icons, you can change the color using the [CSS mask technique](https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images). Set the background color and apply image as a mask:
 
-```tsx
+![CSS masking](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fshpd8mbat8bqfx1m26zu.png)
+
+To achieve this, render `<img>` tag with empty SVG and propper CSS styles:
+
+```jsx
+<img
+  src={EMPTY_SVG}
+  style={{
+    backgroundColor: `currentcolor`,
+    mask: `url("${src}") no-repeat center / contain`,
+  }}
+/>
+```
+
+Here's a reusable universal `Icon.tsx` component, that renders icon with current or original color:
+
+````tsx
 /**
- * A component for rendering monochrome SVG icons using the current text color.
+ * A component for rendering static icons in Next.js apps.
+ *
+ * Usage:
+ * ```tsx
+ * import myIcon from './myIcon.svg';
+ *
+ * // Render with current text color
+ * <Icon src={myIcon} width={32} height={32} />
+ *
+ * // Render with original icon colors
+ * <Icon src={myIcon} nofill width={32} height={32} />
+ * ```
  */
 import { type ComponentProps } from 'react';
 import { type StaticImageData } from 'next/image';
 
 type IconProps = Omit<ComponentProps<'img'>, 'src'> & {
+  /* Icon path and dimensions */
   src: StaticImageData;
+  /* Disables filling with the current color and renders the original icon colors */
+  nofill?: boolean;
 };
 
 const EMPTY_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E`;
 
-export default function Icon({ src, width, height, style, ...props }: IconProps) {
-  return (
-    <img
-      width={width ?? src.width}
-      height={height ?? src.height}
-      src={EMPTY_SVG}
-      style={{
+export function Icon({ src, nofill, width, height, alt, style, ...props }: IconProps) {
+  const mainSrc = nofill ? src.src : EMPTY_SVG;
+  width ??= src.width;
+  height ??= src.height;
+  alt ??= 'icon';
+  style = nofill
+    ? style
+    : {
         ...style,
         backgroundColor: `currentcolor`,
         mask: `url("${src.src}") no-repeat center / contain`,
-      }}
-      {...props}
-    />
-  );
+      };
+
+  return <img src={mainSrc} width={width} height={height} alt={alt} style={style} {...props} />;
 }
-```
+````
+
+> You can copy & paste this component to your project as is.
 
 Now you can render colored icons:
 
@@ -137,6 +169,9 @@ return <Icon src={myIcon} style={{ color: 'green' }} />;
 
 // Set color with Tailwind
 return <Icon src={myIcon} className="text-green-600" />;
+
+// Or keep original colors with `nofill` prop
+return <Icon nofill src={myIcon} />;
 ```
 
 ## TypeScript
