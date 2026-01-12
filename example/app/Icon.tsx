@@ -1,33 +1,41 @@
 /**
- * A component for rendering monochrome SVG icons using the current text color.
+ * A component for rendering static icons in Next.js apps.
  *
- * @example
- * import Icon from './Icon';
- * import myIcon from './icon.svg';
+ * Usage:
+ * ```tsx
+ * import myIcon from './myIcon.svg';
  *
- * <Icon src={myIcon} style={{ color: 'green' }} />
+ * // Render with current text color
+ * <Icon src={myIcon} width={32} height={32} />
+ *
+ * // Render with original icon colors
+ * <Icon src={myIcon} nofill width={32} height={32} />
+ * ```
  */
 import { type ComponentProps } from 'react';
 import { type StaticImageData } from 'next/image';
 
 type IconProps = Omit<ComponentProps<'img'>, 'src'> & {
+  /* Icon path and dimensions */
   src: StaticImageData;
+  /* Disables filling with the current color and renders the original icon colors */
+  nofill?: boolean;
 };
 
 const EMPTY_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E`;
 
-export default function Icon({ src, width, height, style, ...props }: IconProps) {
-  return (
-    <img
-      width={width ?? src.width}
-      height={height ?? src.height}
-      src={EMPTY_SVG}
-      style={{
+export default function Icon({ src, nofill, width, height, alt, style, ...props }: IconProps) {
+  const mainSrc = nofill ? src.src : EMPTY_SVG;
+  width ??= src.width;
+  height ??= src.height;
+  alt ??= 'icon';
+  style = nofill
+    ? style
+    : {
         ...style,
         backgroundColor: `currentcolor`,
         mask: `url("${src.src}") no-repeat center / contain`,
-      }}
-      {...props}
-    />
-  );
+      };
+
+  return <img src={mainSrc} width={width} height={height} alt={alt} style={style} {...props} />;
 }

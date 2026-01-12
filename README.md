@@ -22,6 +22,10 @@ myIcon is an object like:
 */
 ```
 
+Output:
+
+<img alt="Rendered HTML" src="https://raw.githubusercontent.com/vitalets/turbopack-inline-svg-loader/refs/heads/main/rendered-html.png">
+
 ## Why inline SVG?
 
 Inlining small SVGs is beneficial because it eliminates additional HTTP requests, resulting in faster page loads and instant rendering. The slight increase in JavaScript bundle size is usually outweighed by the overall performance gains.
@@ -139,7 +143,7 @@ type IconProps = Omit<ComponentProps<'img'>, 'src'> & {
 
 const EMPTY_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E`;
 
-export function Icon({ src, nofill, width, height, alt, style, ...props }: IconProps) {
+export default function Icon({ src, nofill, width, height, alt, style, ...props }: IconProps) {
   const mainSrc = nofill ? src.src : EMPTY_SVG;
   width ??= src.width;
   height ??= src.height;
