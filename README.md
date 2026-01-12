@@ -96,7 +96,7 @@ return <Image src={myIcon} className="size-64" alt="my icon" />;
 
 For monochrome icons, you can change the color using the [CSS mask technique](https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images). Set the background color and apply image as a mask:
 
-![CSS masking](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fshpd8mbat8bqfx1m26zu.png)
+<img width="50%" alt="CSS masking" src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fshpd8mbat8bqfx1m26zu.png"/>
 
 To achieve this, render `<img>` tag with empty SVG and propper CSS styles:
 
