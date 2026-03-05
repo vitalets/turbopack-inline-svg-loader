@@ -7,19 +7,27 @@ A [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) loader for im
 
 ## Example
 
+Import:
+
 ```ts
 import myIcon from './icon.svg';
-
-return <Image src={myIcon} alt="my icon" />;
 
 /*
 myIcon is an object like:
 {
   src: 'data:image/svg+xml,...',
-  width: 32,
-  height: 32,
+  width: 24,
+  height: 24,
 }
 */
+```
+
+Render:
+
+```ts
+export function MyIcon() {
+  return <Image src={myIcon} alt="my icon" />;
+}
 ```
 
 Output:
